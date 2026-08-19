@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "covered-call"
+version = "0.1.0"
+description = "Paper-only systematic covered-call forward-testing system (Alpaca execution + IBKR data)"
+requires-python = ">=3.11"
+dependencies = [
+    "alpaca-py>=0.30",
+    "ib_async>=2.0",
+    "PyYAML>=6.0",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+dashboard = ["streamlit>=1.30", "pandas>=2.0"]
+
+# Flat layout matching the spec's import style (`from strategy.covered_call import ...`).
+# These become top-level importable packages inside the project's own venv.
+[tool.setuptools]
+py-modules = ["config", "main"]
+
+[tool.setuptools.packages.find]
+include = ["data*", "broker*", "strategy*", "engine*", "reporting*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

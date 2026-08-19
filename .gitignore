@@ -1,0 +1,11 @@
+.env
+*.sqlite
+*.sqlite3
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+logs/
+reports/
+.pytest_cache/
+.DS_Store
